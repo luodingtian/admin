@@ -1,0 +1,339 @@
+<extend name="Base/base"/>
+<block name="page-title"></block>
+<block name="head"></block>
+<block name="style">
+    <style>
+        html,body{
+            height: 100%;
+        }
+        .header-wrap{
+            display: flex;
+            display: -webkit-flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            height: 70px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #FDFDFE;
+            z-index: 999;
+        }
+        .bg-wrap{
+            width: 100%;
+            height: 100%;
+            background-image: url(__PUBLIC__/app/img/pay-bg.png);
+            -webkit-background-size:cover;
+            background-size:cover;
+            background-position: center;
+        }
+        .bg-wrap img{
+            width: 100%;
+        }
+        .exit-wrap{
+            display: inline-block;
+            width: 70px;
+            text-align: center;
+            line-height: 70px;
+            height: 70px;
+            border-left:solid 1px #ccc;
+            border-right:solid 1px #ccc;
+
+        }
+        .exit-wrap:hover{
+            background: #009688;
+        }
+        .exit-wrap:hover i{
+            color: #fff!important;
+        }
+        .bg-wrap{
+            position: relative;
+        }
+        .pay-panel{
+            position: absolute;
+            width: 750px;
+            bottom: 10%;
+            left: 50%;
+            color: #fff;
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            -o-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        .period-warp{
+            width: 47%;
+            float: left;
+            border: 1px solid #009688;
+            background: #111;
+            position: relative;
+            height: 200px;
+        }
+        .diypay-btn,.periodpay-btn{
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 50px;
+            line-height: 50px;
+            font-size: 18px;
+        }
+        .info-wrap{
+            height: 150px;
+            display: flex;
+            display: -webkit-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .pay-panel .hr{
+            width: 150px;
+            height: 2px;
+            background: #fff;
+            border-radius: 1px;
+        }
+        .pay-wrap{
+            width: 700px;
+        }
+        .pay-main{
+            padding: 15px 30px;
+        }
+        .pay-main table{
+            width: 100%;
+        }
+        .pay-main table td{
+            padding: 5px 10px;
+        }
+        .pay-main table td:first-child{
+            width: 150px;
+            text-align: center;
+        }
+        .pay-main button{
+            height: 40px;
+            width: 120px;
+            border: 1px solid #009688;
+            border-radius: 1px;
+            color: #009688;
+            background: #fff;
+        }
+        .pay-main button:hover{
+            background: #009688;
+            color: #fff;
+        }
+        .pay-header{
+            height: 50px;
+            line-height:50px;
+            text-align: center;
+            background: #009688;
+            font-size: 20px;
+            color: #fff;
+        }
+        .pay-code{
+            width: 180px;
+        }
+        .checked{
+            background: #009688!important;
+            color: #fff!important;
+        }
+        .diy-input{
+            height: 40px;
+            width: 120px;
+            border: 1px solid #009688;
+            border-radius: 1px;
+            padding: 5px 15px;
+            margin-right:5px;
+        }
+        .success-wrap{
+            width: 500px;
+        }
+        .success-main{
+            width: 500px;
+            height: 400px;
+            display: flex;
+            display: -webkit-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .icon-success{
+            font-size: 180px!important;
+            color: #009688!important;
+        }
+        .suc-tips{
+            font-size: 30px;font-weight: bolder;color: #009688;
+        }
+    </style>
+
+</block>
+<block name="main">
+    <div class="header-wrap">
+        <img class="pay-logo" src="__PUBLIC__/app/img/charge-logo.png" alt="庸博">
+        <span>
+            <img src="__PUBLIC__/app/img/head.png" alt="庸博">
+            <span class="my-margin-l5">喷摩丝的稻草人</span>
+            <span class="exit-wrap my-margin-l15">
+                <i class="iconfont icon-shutdown my-cl-them my-font-16"></i>
+            </span>
+        </span>
+    </div>
+    <div class="bg-wrap">
+
+        <div class="pay-panel" align="center">
+            <button class="layui-btn" onclick="paySuc()">充值成功</button>
+            <table>
+                    <tr>
+                        <td>
+                            <div class="hr"></div>
+                        </td>
+                        <td style="padding: 0 10px"><p class="my-font-12 my-bold">选择充值方案</p></td>
+                        <td>
+                            <div class="hr"></div>
+                        </td>
+                    </tr>
+                </table>
+            <div class="my-margin-t30"></div>
+                <div class="period-warp ">
+                    <div class="info-wrap">
+                        <p class="my-font-14 my-bold">包年包月</p>
+                        <p class="my-margin-t15">包年包月,一次缴费省心省力</p>
+                    </div>
+                    <button class="layui-btn periodpay-btn" onclick="payPeriod()">立即充值</button>
+                </div>
+                <div class="period-warp" style="margin-left: 6%;">
+                    <div class="info-wrap">
+                        <p class="my-font-14 my-bold">账户充值</p>
+                        <p class="my-margin-t15">自由金额充值,随心所欲</p>
+                    </div>
+                    <button class="layui-btn periodpay-btn" onclick="payDiy()">立即充值</button>
+                </div>
+
+        </div>
+    </div>
+
+</block>
+<block name="script">
+    <script>
+        //包年包月支付窗口
+        var periodContent=
+        '<div class="pay-wrap">'+
+                '<div class="pay-header">包年包月</div>'+
+                '<div class="pay-main">'+
+                '<table>'+
+                '<tr class="monthbtn-wrap">'+
+                '<td>选择时长</td>'+
+                '<td><button value="100" class="checked">1个月</button></td>'+
+                '<td><button value="200">2个月</button></td>'+
+                '<td><button value="300">3个月</button></td>'+
+                '</tr>'+
+                '<tr class="monthbtn-wrap">'+
+                '<td></td>'+
+                '<td><button value="600">6个月</button></td>'+
+                '<td><button value="900">9个月</button></td>'+
+                '<td><button value="1200">12个月</button></td>'+
+                '</tr>'+
+                '<tr class="paybtn-wrap">'+
+                '<td>支付方式</td>'+
+                '<td><button class="checked wx-btn">微信支付</button></td>'+
+                '<td><button class="zfb-btn">支付宝支付</button></td>'+
+                '</tr>'+
+                '<tr>'+
+                '<td>应付金额</td>'+
+                '<td><span class="my-font-14 my-cl-them my-bold price-wrap">100</span> <span class="my-margin-l5">元</span></td>'+
+                '</tr>'+
+                '<tr>'+
+                '<td></td>'+
+                '<td colspan="2">'+
+                '<div style="width: 180px" align="center">'+
+                '<img class="pay-code" src="__PUBLIC__/app/img/qrcode.png" alt="庸博">'+
+                '<p class="my-margin-t10">微信扫码完成支付</p>'+
+                '</div>'+
+                '</td>'+
+                '</tr>'+
+                '</table>'+
+                '</div>'+
+                '</div>';
+        //自定义金额窗口
+        var diyContent=
+                '<div class="pay-wrap">'+
+                '<div class="pay-header">充值账户</div>'+
+                '<div class="pay-main">'+
+                '<table>'+
+                '<tr class="monthbtn-wrap">'+
+                '<td width="50">充值金额</td>'+
+                '<td><input value="100" type="number" class="diy-input"/><span class="my-cl-them">元</span></td>'+
+                '<tr class="paybtn-wrap">'+
+                '<td>支付方式</td>'+
+                '<td><button class="wx-btn checked">微信支付</button><button class="zfb-btn my-margin-l20">支付宝支付</button></td>'+
+                '</tr>'+
+                '<tr>'+
+                '<td>应付金额</td>'+
+                '<td><span class="my-font-14 my-cl-them my-bold price-wrap">100</span> <span class="my-margin-l5">元</span></td>'+
+                '</tr>'+
+                '<tr>'+
+                '<td></td>'+
+                '<td>'+
+                '<div style="width: 180px" align="center">'+
+                '<img class="pay-code" src="__PUBLIC__/app/img/qrcode.png" alt="庸博">'+
+                '<p class="my-margin-t10">微信扫码完成支付</p>'+
+                '</div>'+
+                '</td>'+
+                '</tr>'+
+                '</table>'+
+                '</div>'+
+                '</div>';
+        //成功之后的弹窗
+        var paySuccess=
+                '<div class="success-wrap">'+
+                '<div class="pay-header">充值账户</div>'+
+                '<div class="success-main">'+
+                '<i class="iconfont icon-success"></i>'+
+                '<p class="suc-tips">充值成功</p>'+
+                '</div>'+
+                '</div>';
+        function payPeriod(){
+            var openAdd=layer.open({
+                type: 1 //Page层类型
+                ,area: ['700px', '']//hight为空的时候高度自适应子元素高度；
+                ,title:0//不用的时候为0，阔以出现关闭符号
+                ,shade: 0.6 //遮罩透明度
+                //,maxmin: true //允许全屏最小化
+                ,anim: 1 //0-6的动画形式，-1不开启
+                ,content:periodContent
+            });
+        }
+        function payDiy(){
+            var openAdd=layer.open({
+                type: 1 //Page层类型
+                ,area: ['700px', '']//hight为空的时候高度自适应子元素高度；
+                ,title:0//不用的时候为0，阔以出现关闭符号
+                ,shade: 0.6 //遮罩透明度
+                //,maxmin: true //允许全屏最小化
+                ,anim: 1 //0-6的动画形式，-1不开启
+                ,content:diyContent
+            });
+        }
+        function paySuc(){
+            var openAdd=layer.open({
+                type: 1 //Page层类型
+                ,area: ['500px', '']//hight为空的时候高度自适应子元素高度；
+                ,title:0//不用的时候为0，阔以出现关闭符号
+                ,shade: 0.6 //遮罩透明度，
+                ,closeBtn:false
+                //,maxmin: true //允许全屏最小化
+                ,anim: 1 //0-6的动画形式，-1不开启
+                ,content:paySuccess
+            });
+        }
+        $('body').on('click','.monthbtn-wrap button', function () {
+            $('.monthbtn-wrap button').removeClass('checked');
+            $(this).addClass('checked');
+            $('.price-wrap').text($(this).val());
+        });
+        $('body').on('click','.paybtn-wrap button',function () {
+            $('.paybtn-wrap button').removeClass('checked');
+            $(this).addClass('checked');
+        })
+
+    </script>
+</block>

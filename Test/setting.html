@@ -1,0 +1,56 @@
+<extend name="Base/base"/>
+<block name="page-title">新增用户</block>
+<block name="head"></block>
+<block name="style">
+    <style>
+        .account-panel{
+            width: 600px;
+            padding: 15px;
+            margin: 20px auto;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 10px;
+        }
+
+        .account-tab td{
+            padding:5px 0 ;
+        }
+        .layui-input-inline input{
+            width: 310px;
+        }
+        .layui-form .layui-input-inline input{
+            width: 100px;
+        }
+    </style>
+
+</block>
+<block name="main">
+    <a href="">刷新</a>
+    <div class="account-panel">
+        <table class="my-width-100 account-tab">
+            <tr>
+                <td>单次清洗费用</td>
+                <td align="right">
+                    <div class="layui-input-inline">
+                        <input type="number" name="phone"   placeholder="输入单次清洗费用" autocomplete="off" class="layui-input">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit" class="layui-btn" style="width: 200px">提交保存</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</block>
+<block name="script">
+    <script>
+
+    </script>
+</block>
